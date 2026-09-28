@@ -6,59 +6,59 @@ import { motion } from 'framer-motion';
 export const About: React.FC = () => {
   const highlights = [
     {
-      icon: <FiCpu className="w-4 h-4 text-indigo-400 dark:text-indigo-400 light:text-indigo-600" />,
+      icon: <FiCpu      className="w-4 h-4 text-indigo-400" />,
       title: "B.Tech in Artificial Intelligence",
       description: "G. H. Raisoni College of Engineering, focused on machine learning algorithms, deep learning, and computer vision systems."
     },
     {
-      icon: <FiCode className="w-4 h-4 text-indigo-400 dark:text-indigo-400 light:text-indigo-600" />,
+      icon: <FiCode     className="w-4 h-4 text-indigo-400" />,
       title: "Hands-on Software Development",
       description: "Command of Python, JavaScript, React.js, FastAPI, Flask, and clean object-oriented architecture."
     },
     {
-      icon: <FiDatabase className="w-4 h-4 text-indigo-400 dark:text-indigo-400 light:text-indigo-600" />,
+      icon: <FiDatabase className="w-4 h-4 text-indigo-400" />,
       title: "Data Engineering & Analytics",
       description: "Experienced with Pandas, NumPy, SQL (PostgreSQL, MySQL), MongoDB, and data preprocessing pipelines."
     },
     {
-      icon: <FiBriefcase className="w-4 h-4 text-indigo-400 dark:text-indigo-400 light:text-indigo-600" />,
+      icon: <FiBriefcase className="w-4 h-4 text-indigo-400" />,
       title: "3 Practical Internships",
       description: "Demonstrated execution across machine learning engineering at Road2Tech, AI at Edunet, and Python at iBase."
     }
   ];
 
   return (
-    <section id="about" className="py-20 border-b border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 relative">
+    <section id="about" className="py-20 border-b divider relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 dark:text-indigo-400 light:text-indigo-600 font-semibold block mb-1">
+          <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold block mb-1">
             Background
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white dark:text-white light:text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-heading">
             About Me
           </h2>
         </motion.div>
 
-        {/* Narrative & Focus Cards */}
+        {/* Narrative & Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
-          
-          {/* Main Narrative */}
-          <motion.div 
+
+          {/* Narrative */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8"
           >
-            <div className="space-y-4 text-slate-300 dark:text-slate-300 light:text-slate-700 text-sm sm:text-base leading-relaxed">
+            <div className="space-y-4 text-body text-sm sm:text-base leading-relaxed">
               <p>
                 I am a B.Tech graduate in Artificial Intelligence with a focus on software engineering, intelligent systems, and data-driven applications. My education started with a Diploma in Computer Technology, giving me early grounding in computer systems, C/C++, and core algorithms.
               </p>
@@ -70,15 +70,15 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* Target Roles Checklist */}
-            <div className="mt-6 pt-6 border-t border-slate-800/80 dark:border-slate-800/80 light:border-slate-200">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-500 block mb-3 font-semibold">
+            {/* Target Roles */}
+            <div className="mt-6 pt-6 border-t divider">
+              <span className="text-xs font-mono uppercase tracking-wider text-muted block mb-3 font-semibold">
                 Target Roles:
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {PERSONAL_INFO.targetRoles.map((role) => (
-                  <div key={role} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 dark:text-slate-200 light:text-slate-800 font-medium">
-                    <FiCheck className="w-3.5 h-3.5 text-indigo-400 dark:text-indigo-400 light:text-indigo-600 shrink-0" />
+                  <div key={role} className="flex items-center gap-2 text-xs sm:text-sm font-medium text-heading">
+                    <FiCheck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                     <span>{role}</span>
                   </div>
                 ))}
@@ -86,7 +86,7 @@ export const About: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Core Highlights */}
+          {/* Highlight Cards */}
           <div className="lg:col-span-5 space-y-3">
             {highlights.map((item, idx) => (
               <motion.div
@@ -98,32 +98,26 @@ export const About: React.FC = () => {
                 whileHover={{ x: 4, transition: { duration: 0.2 } }}
                 className="glass-card rounded-xl p-4 flex items-start gap-3.5"
               >
-                <div className="p-2.5 rounded-lg bg-slate-900/90 dark:bg-slate-900/90 light:bg-indigo-50 border border-slate-800 dark:border-slate-800 light:border-indigo-200 shrink-0">
+                <div
+                  className="p-2.5 rounded-lg shrink-0"
+                  style={{ backgroundColor: 'rgba(67,56,202,0.15)', border: '1px solid rgba(99,102,241,0.25)' }}
+                >
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white dark:text-white light:text-slate-900 text-sm mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-600 leading-normal">
-                    {item.description}
-                  </p>
+                  <h3 className="font-semibold text-heading text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs text-muted leading-normal">{item.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-
         </div>
 
-        {/* Milestone Timeline */}
+        {/* Timeline */}
         <div>
           <div className="mb-6">
-            <h3 className="text-xl font-bold text-white dark:text-white light:text-slate-900 tracking-tight">
-              Journey Timeline
-            </h3>
-            <p className="text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 mt-1">
-              Education → Internships → Projects → Current Goal
-            </p>
+            <h3 className="text-xl font-bold tracking-tight text-heading">Journey Timeline</h3>
+            <p className="text-xs font-mono text-muted mt-1">Education → Internships → Projects → Current Goal</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -138,18 +132,10 @@ export const About: React.FC = () => {
                 className="glass-card rounded-xl p-5 flex flex-col justify-between"
               >
                 <div>
-                  <div className="font-mono text-xs text-indigo-400 dark:text-indigo-400 light:text-indigo-600 font-bold mb-2">
-                    Phase {stage.step}
-                  </div>
-                  <h4 className="font-semibold text-white dark:text-white light:text-slate-900 text-sm mb-1">
-                    {stage.title}
-                  </h4>
-                  <div className="text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 mb-2">
-                    {stage.subtitle}
-                  </div>
-                  <p className="text-xs text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed">
-                    {stage.description}
-                  </p>
+                  <div className="font-mono text-xs text-indigo-400 font-bold mb-2">Phase {stage.step}</div>
+                  <h4 className="font-semibold text-heading text-sm mb-1">{stage.title}</h4>
+                  <div className="text-xs font-mono text-muted mb-2">{stage.subtitle}</div>
+                  <p className="text-xs text-body leading-relaxed">{stage.description}</p>
                 </div>
               </motion.div>
             ))}

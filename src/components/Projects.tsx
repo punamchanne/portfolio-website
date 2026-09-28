@@ -12,34 +12,32 @@ export const Projects: React.FC = () => {
 
   const categories = ['All', 'AI/ML', 'GenAI', 'Full Stack', 'Blockchain'] as const;
 
-  // Filter projects by active category tab
   const filteredProjects = filter === 'All'
     ? PROJECTS_DATA
     : PROJECTS_DATA.filter(p => p.category === filter);
 
-  // Default to showing first 6 items unless expanded
   const displayedProjects = isExpanded ? filteredProjects : filteredProjects.slice(0, 6);
   const hasMoreProjects = filteredProjects.length > 6;
 
   return (
-    <section id="projects" className="py-20 border-b border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 relative">
+    <section id="projects" className="py-20 border-b divider relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 dark:text-indigo-400 light:text-indigo-600 font-semibold block mb-1">
+          <span className="text-xs font-mono uppercase tracking-wider text-indigo-400 dark:text-indigo-400 font-semibold block mb-1 text-indigo-600-light">
             Portfolio
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white dark:text-white light:text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-heading tracking-tight">
             Featured Projects
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 dark:text-slate-400 light:text-slate-600 mt-2 max-w-2xl">
+          <p className="text-sm sm:text-base text-muted mt-2 max-w-2xl">
             Selected engineering projects built with verified architectures and real source code.
           </p>
         </motion.div>
@@ -52,12 +50,12 @@ export const Projects: React.FC = () => {
                 key={cat}
                 onClick={() => {
                   setFilter(cat);
-                  setIsExpanded(false); // Reset expansion on filter change
+                  setIsExpanded(false);
                 }}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
                   filter === cat
                     ? 'bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20'
-                    : 'bg-slate-900/80 dark:bg-slate-900/80 light:bg-slate-100 text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-900 border border-slate-800 dark:border-slate-800 light:border-slate-200'
+                    : 'filter-btn-inactive'
                 }`}
               >
                 {cat}
@@ -65,13 +63,13 @@ export const Projects: React.FC = () => {
             ))}
           </div>
 
-          <div className="text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500">
-            Showing <span className="text-white dark:text-white light:text-slate-900 font-semibold">{displayedProjects.length}</span> of {filteredProjects.length} Projects
+          <div className="text-xs font-mono text-muted">
+            Showing <span className="text-heading font-semibold">{displayedProjects.length}</span> of {filteredProjects.length} Projects
           </div>
         </div>
 
-        {/* Projects Grid with Motion */}
-        <motion.div 
+        {/* Projects Grid */}
+        <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
@@ -84,14 +82,13 @@ export const Projects: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: idx * 0.04 }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 className="glass-card rounded-xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 <div>
-                  {/* Category & Status */}
+                  {/* Category & Live badge */}
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono text-indigo-400 dark:text-indigo-400 light:text-indigo-600 font-semibold">
+                    <span className="text-xs font-mono text-indigo-400 dark:text-indigo-400 font-semibold">
                       {project.category}
                     </span>
                     {project.liveUrl && (
@@ -101,11 +98,11 @@ export const Projects: React.FC = () => {
                     )}
                   </div>
 
-                  <h3 className="font-bold text-white dark:text-white light:text-slate-900 text-lg mb-2 group-hover:text-indigo-400 dark:group-hover:text-indigo-400 light:group-hover:text-indigo-600 transition-colors">
+                  <h3 className="font-bold text-heading text-lg mb-2 group-hover:text-indigo-400 dark:group-hover:text-indigo-400 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-xs sm:text-sm text-body leading-relaxed mb-4 line-clamp-3">
                     {project.description}
                   </p>
 
@@ -114,7 +111,7 @@ export const Projects: React.FC = () => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-900/90 dark:bg-slate-900/90 light:bg-slate-100 text-slate-300 dark:text-slate-400 light:text-slate-600 border border-slate-800 dark:border-slate-800 light:border-slate-200"
+                        className="tag-pill px-2 py-0.5 rounded text-[11px] font-mono"
                       >
                         {tag}
                       </span>
@@ -123,8 +120,8 @@ export const Projects: React.FC = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div 
-                  className="pt-4 border-t border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 flex items-center justify-between text-xs gap-2"
+                <div
+                  className="pt-4 border-t divider flex items-center justify-between text-xs gap-2"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="flex items-center gap-2">
@@ -133,7 +130,7 @@ export const Projects: React.FC = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-white dark:hover:text-white light:hover:text-slate-900 transition-colors p-1"
+                        className="flex items-center gap-1 text-muted hover:text-heading transition-colors p-1"
                         aria-label="View GitHub Repository"
                       >
                         <FiGithub className="w-4 h-4" />
@@ -145,7 +142,7 @@ export const Projects: React.FC = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-indigo-400 dark:text-indigo-400 light:text-indigo-600 hover:underline p-1"
+                        className="flex items-center gap-1 text-indigo-400 hover:underline p-1"
                       >
                         <FiExternalLink className="w-4 h-4" />
                         <span>Live</span>
@@ -155,7 +152,7 @@ export const Projects: React.FC = () => {
 
                   <button
                     onClick={() => setSelectedProject(project)}
-                    className="flex items-center gap-1 text-xs font-mono text-indigo-400 dark:text-indigo-400 light:text-indigo-600 hover:text-indigo-300 transition-colors"
+                    className="flex items-center gap-1 text-xs font-mono text-indigo-400 hover:text-indigo-300 transition-colors"
                   >
                     <FiFileText className="w-3.5 h-3.5" />
                     <span>Case Study</span>
@@ -166,31 +163,30 @@ export const Projects: React.FC = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* Explore More Button & GitHub Direct Link */}
+        {/* Explore More & GitHub link */}
         <div className="mt-12 flex flex-col items-center justify-center gap-4">
           {hasMoreProjects && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="px-6 py-2.5 rounded-xl bg-slate-900/90 dark:bg-slate-900/90 light:bg-white hover:bg-slate-800 dark:hover:bg-slate-800 light:hover:bg-slate-100 text-slate-200 dark:text-slate-200 light:text-slate-800 border border-slate-700/80 dark:border-slate-700/80 light:border-slate-300 font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5"
+              className="px-6 py-2.5 rounded-xl glass-card text-heading font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5"
             >
               <span>{isExpanded ? 'Show less' : 'Explore more projects'}</span>
               {isExpanded ? <FiChevronUp className="w-4 h-4" /> : <FiChevronDown className="w-4 h-4" />}
             </button>
           )}
 
-          {/* Direct GitHub Profile Link */}
           <a
             href="https://github.com/punamchanne"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 hover:text-indigo-400 dark:hover:text-indigo-400 light:hover:text-indigo-600 transition-colors pt-2"
+            className="flex items-center gap-1.5 text-xs font-mono text-muted hover:text-indigo-400 transition-colors pt-2"
           >
             <FiGithub className="w-3.5 h-3.5" />
             <span>See all on GitHub (50+ repositories) →</span>
           </a>
         </div>
 
-        {/* Project Deep-Dive Modal */}
+        {/* Project Modal */}
         {selectedProject && (
           <ProjectModal
             project={selectedProject}

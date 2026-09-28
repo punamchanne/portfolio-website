@@ -69,7 +69,7 @@ export const PERSONAL_INFO = {
   title: "AI & Software Developer",
   tagline: "Python | AI/ML | Full-Stack Development | Data Analytics",
   location: "Maharashtra, India",
-  email: "punamchanne@gmail.com",
+  email: "punamchanne51@gmail.com",
   github: "https://github.com/punamchanne",
   linkedin: "https://www.linkedin.com/in/punamchanne51/",
   bioIntro: "B.Tech graduate in Artificial Intelligence with hands-on experience in Python, SQL, Machine Learning, REST APIs, data preprocessing, model evaluation, and full-stack application development.",
@@ -82,6 +82,7 @@ export const PERSONAL_INFO = {
     "GenAI Engineer",
     "QA/Testing"
   ],
+
   statsSummary: [
     { label: "Public Repositories", value: "50+" },
     { label: "Hands-on Internships", value: "3" },
@@ -262,6 +263,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["React", "Next.js", "Node.js", "Express", "MongoDB", "JWT Auth", "REST API"],
     description: "A recruitment platform featuring candidate job search, employer vacancy posting, OTP verification, applicant tracking workflows, and resume document parsing.",
     githubUrl: "https://github.com/punamchanne/job-portal-",
+    liveUrl: "https://job-portal-eta-one-17.vercel.app/",
     featured: true,
     overview: "A recruitment marketplace connecting active job seekers with hiring companies, equipped with role-based dashboards, verified credentials, and candidate application pipelines.",
     problem: "Recruitment websites often suffer from fragmented workflows between job applicants and hiring managers, lacking unified document parsing and application tracking.",

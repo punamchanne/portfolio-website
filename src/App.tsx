@@ -18,7 +18,7 @@ export function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-slate-950 dark:bg-slate-950 light:bg-slate-50 text-slate-100 dark:text-slate-100 light:text-slate-900 flex flex-col selection:bg-indigo-600 selection:text-white transition-colors duration-300 relative">
+      <div className="min-h-screen bg-base flex flex-col transition-colors duration-300 relative">
         {/* Ambient background pattern */}
         <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-0" />
 

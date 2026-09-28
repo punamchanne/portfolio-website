@@ -2,95 +2,198 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────
+   CSS Custom Properties — theme tokens
+   Dark mode is the default; .light overrides
+───────────────────────────────────────────── */
+:root {
+  --bg-base:        #020817;   /* slate-950 */
+  --bg-surface:     #0f172a;   /* slate-900 */
+  --bg-card:        rgba(17,24,39,0.82);
+  --bg-tag:         rgba(15,23,42,0.88);
+  --bg-input:       #111827;
+
+  --border-base:    rgba(51,65,85,0.65);    /* slate-700/65 */
+  --border-card:    rgba(255,255,255,0.07);
+  --border-input:   rgba(51,65,85,0.80);
+
+  --text-heading:   #f8fafc;   /* slate-50 */
+  --text-body:      #cbd5e1;   /* slate-300 */
+  --text-muted:     #94a3b8;   /* slate-400 */
+  --text-subtle:    #64748b;   /* slate-500 */
+  --text-tag:       #94a3b8;
+
+  --nav-bg:         rgba(2,8,23,0.88);
+  --nav-border:     rgba(51,65,85,0.65);
+  --nav-link:       #cbd5e1;
+  --nav-link-hover: #f8fafc;
+  --nav-pill-bg:    rgba(15,23,42,0.55);
+
+  --btn-secondary-bg:     rgba(15,23,42,0.85);
+  --btn-secondary-text:   #e2e8f0;
+  --btn-secondary-border: rgba(51,65,85,0.80);
+  --btn-secondary-hover:  #1e293b;
+
+  --badge-status-bg:   rgba(15,23,42,0.80);
+  --badge-status-text: #94a3b8;
+
+  --card-hover-shadow: 0 12px 30px -10px rgba(0,0,0,0.55), 0 0 20px -5px rgba(99,102,241,0.15);
+}
+
+html.light {
+  --bg-base:        #f1f5f9;   /* slate-100 */
+  --bg-surface:     #ffffff;
+  --bg-card:        rgba(255,255,255,0.94);
+  --bg-tag:         #f1f5f9;
+  --bg-input:       #ffffff;
+
+  --border-base:    rgba(203,213,225,0.80);  /* slate-300 */
+  --border-card:    rgba(148,163,184,0.28);
+  --border-input:   #cbd5e1;
+
+  --text-heading:   #0f172a;   /* slate-900 */
+  --text-body:      #334155;   /* slate-700 */
+  --text-muted:     #64748b;   /* slate-500 */
+  --text-subtle:    #94a3b8;   /* slate-400 */
+  --text-tag:       #475569;
+
+  --nav-bg:         rgba(255,255,255,0.88);
+  --nav-border:     rgba(203,213,225,0.70);
+  --nav-link:       #475569;
+  --nav-link-hover: #0f172a;
+  --nav-pill-bg:    rgba(241,245,249,0.80);
+
+  --btn-secondary-bg:     #ffffff;
+  --btn-secondary-text:   #334155;
+  --btn-secondary-border: #cbd5e1;
+  --btn-secondary-hover:  #f1f5f9;
+
+  --badge-status-bg:   #f1f5f9;
+  --badge-status-text: #64748b;
+
+  --card-hover-shadow: 0 12px 28px -8px rgba(99,102,241,0.14), 0 2px 8px -2px rgba(0,0,0,0.06);
+}
+
+/* ─────────────────────────────────────────────
+   Base Styles
+───────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
-
-  html.dark {
-    color-scheme: dark;
-  }
-
-  html.light {
-    color-scheme: light;
-  }
+  html.dark { color-scheme: dark; }
+  html.light { color-scheme: light; }
 
   body {
-    @apply bg-slate-950 text-slate-100 transition-colors duration-300 antialiased selection:bg-indigo-600 selection:text-white;
+    background-color: var(--bg-base);
+    color: var(--text-body);
+    @apply transition-colors duration-300 antialiased selection:bg-indigo-600 selection:text-white;
   }
 
-  html.light body {
-    @apply bg-slate-50 text-slate-900 selection:bg-indigo-500 selection:text-white;
-  }
-
-  /* Custom subtle scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 3px;
-  }
-  html.light ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
-  }
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
 }
 
+/* ─────────────────────────────────────────────
+   Utility Classes (theme-aware)
+───────────────────────────────────────────── */
 @layer utilities {
-  /* Ambient dot pattern background */
+
+  /* --- Background helpers --- */
+  .bg-base    { background-color: var(--bg-base); }
+  .bg-surface { background-color: var(--bg-surface); }
+
+  /* --- Text helpers --- */
+  .text-heading { color: var(--text-heading) !important; }
+  .text-body    { color: var(--text-body)    !important; }
+  .text-muted   { color: var(--text-muted)   !important; }
+  .text-subtle  { color: var(--text-subtle)  !important; }
+
+  /* --- Divider --- */
+  .divider { border-color: var(--border-base); }
+
+  /* --- Glass card --- */
+  .glass-card {
+    background-color: var(--bg-card);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border-card);
+    box-shadow: 0 2px 12px -2px rgba(0,0,0,0.18);
+    transition: all 0.28s cubic-bezier(0.16,1,0.3,1);
+  }
+  .glass-card:hover {
+    border-color: rgba(99,102,241,0.40);
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+  }
+
+  /* --- Tag pills --- */
+  .tag-pill {
+    background-color: var(--bg-tag);
+    color: var(--text-tag);
+    border: 1px solid var(--border-base);
+    @apply px-2 py-0.5 rounded text-[11px] font-mono;
+  }
+
+  /* --- Filter / secondary buttons --- */
+  .filter-btn-inactive {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 1px solid var(--btn-secondary-border);
+    @apply rounded-lg text-xs font-mono transition-all;
+  }
+  .filter-btn-inactive:hover {
+    background-color: var(--btn-secondary-hover);
+    color: var(--text-heading);
+  }
+
+  /* --- Secondary button (Resume, etc.) --- */
+  .btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 1px solid var(--btn-secondary-border);
+    @apply font-medium text-sm transition-all flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 hover:-translate-y-0.5;
+  }
+  .btn-secondary:hover { background-color: var(--btn-secondary-hover); }
+
+  /* --- Ambient dot pattern --- */
   .bg-grid-pattern {
     background-size: 32px 32px;
-    background-image: radial-gradient(circle, rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(99,102,241,0.12) 1px, transparent 1px);
   }
-
   html.light .bg-grid-pattern {
-    background-image: radial-gradient(circle, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(99,102,241,0.09) 1px, transparent 1px);
   }
 
-  /* Glassmorphic card styling */
-  .glass-card {
-    background-color: rgba(17, 24, 39, 0.75);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  /* --- Navbar pill container --- */
+  .nav-pill {
+    background-color: var(--nav-pill-bg);
+    border: 1px solid var(--nav-border);
   }
 
-  .glass-card:hover {
-    border-color: rgba(99, 102, 241, 0.35);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(99, 102, 241, 0.15);
+  /* --- Input / textarea --- */
+  .form-input {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-input);
+    color: var(--text-heading);
+    @apply rounded-lg px-4 py-2.5 text-sm transition-colors outline-none w-full;
   }
+  .form-input::placeholder { color: var(--text-subtle); }
+  .form-input:focus { border-color: rgba(99,102,241,0.55); box-shadow: 0 0 0 3px rgba(99,102,241,0.08); }
 
-  html.light .glass-card {
-    background-color: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  html.light .glass-card:hover {
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.12);
-  }
-
-  /* Shimmer border animation */
-  .border-glow {
-    position: relative;
-  }
+  /* --- Shimmer border --- */
+  .border-glow { position: relative; }
   .border-glow::after {
     content: '';
     position: absolute;
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), transparent 60%);
+    background: linear-gradient(135deg, rgba(99,102,241,0.4), transparent 60%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -98,7 +201,14 @@
   }
 }
 
-/* Reduced motion preference */
+/* ─────────────────────────────────────────────
+   Section borders (Tailwind border-color can't
+   use CSS vars directly in class names, so we
+   override via selector)
+───────────────────────────────────────────── */
+section { border-color: var(--border-base); }
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

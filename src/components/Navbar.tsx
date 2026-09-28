@@ -14,31 +14,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   const { theme, toggleTheme } = useTheme();
 
   const navLinks = [
-    { label: 'Home', href: '#home', id: 'home' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Skills', href: '#skills', id: 'skills' },
-    { label: 'Projects', href: '#projects', id: 'projects' },
-    { label: 'Experience', href: '#experience', id: 'experience' },
+    { label: 'Home',           href: '#home',           id: 'home' },
+    { label: 'About',          href: '#about',          id: 'about' },
+    { label: 'Skills',         href: '#skills',         id: 'skills' },
+    { label: 'Projects',       href: '#projects',       id: 'projects' },
+    { label: 'Experience',     href: '#experience',     id: 'experience' },
     { label: 'Certifications', href: '#certifications', id: 'certifications' },
-    { label: 'Contact', href: '#contact', id: 'contact' },
+    { label: 'Contact',        href: '#contact',        id: 'contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      const sections = navLinks.map(link => link.id);
       const scrollPosition = window.scrollY + 200;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
+      for (let i = navLinks.length - 1; i >= 0; i--) {
+        const el = document.getElementById(navLinks[i].id);
+        if (el && el.offsetTop <= scrollPosition) { setActiveSection(navLinks[i].id); break; }
       }
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -46,29 +39,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      const topOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - topOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    const el = document.getElementById(href.replace('#', ''));
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+  };
+
+  /* Inline style objects reference CSS vars so they always reflect the active theme */
+  const navbarScrolled: React.CSSProperties = {
+    backgroundColor: 'var(--nav-bg)',
+    backdropFilter: 'blur(16px)',
+    borderBottom: '1px solid var(--nav-border)',
+  };
+  const iconBtnStyle: React.CSSProperties = {
+    color: 'var(--text-muted)',
+  };
+  const navPillStyle: React.CSSProperties = {
+    backgroundColor: 'var(--nav-pill-bg)',
+    border: '1px solid var(--nav-border)',
+  };
+  const mobileDrawerStyle: React.CSSProperties = {
+    backgroundColor: 'var(--bg-surface)',
+    border: '1px solid var(--border-base)',
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-slate-950/85 dark:bg-slate-950/85 light:bg-white/85 backdrop-blur-md border-b border-slate-800/80 dark:border-slate-800/80 light:border-slate-200/80 shadow-sm py-3'
-          : 'bg-transparent py-5'
+        isScrolled ? 'shadow-sm py-3' : 'bg-transparent py-5'
       }`}
+      style={isScrolled ? navbarScrolled : undefined}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+
           {/* Logo */}
           <a
             href="#home"
@@ -80,67 +82,65 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
               PC
             </div>
             <div className="flex flex-col">
-              <span className="font-semibold text-slate-100 dark:text-slate-100 light:text-slate-900 text-sm sm:text-base tracking-tight">
+              <span className="font-semibold text-sm sm:text-base tracking-tight text-heading">
                 Punam Channe
               </span>
-              <span className="text-[11px] font-mono text-slate-400 dark:text-slate-400 light:text-slate-500">
-                AI & Software Developer
+              <span className="text-[11px] font-mono text-muted">
+                AI &amp; Software Developer
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/40 dark:bg-slate-900/40 light:bg-slate-100/70 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-800/60 dark:border-slate-800/60 light:border-slate-200">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-150 ${
-                    isActive
-                      ? 'text-white bg-indigo-600 shadow-sm'
-                      : 'text-slate-300 dark:text-slate-300 light:text-slate-600 hover:text-white dark:hover:text-white light:hover:text-slate-900 hover:bg-slate-800/50 dark:hover:bg-slate-800/50 light:hover:bg-slate-200'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
+          {/* Desktop Nav Pills */}
+          <nav
+            className="hidden lg:flex items-center gap-1 backdrop-blur-sm px-3 py-1.5 rounded-full"
+            style={navPillStyle}
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-150 ${
+                  activeSection === link.id
+                    ? 'text-white bg-indigo-600 shadow-sm'
+                    : 'hover:bg-slate-800/40'
+                }`}
+                style={activeSection === link.id ? undefined : { color: 'var(--nav-link)' }}
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
-          {/* Desktop Right Side Actions */}
+          {/* Desktop Actions */}
           <div className="hidden sm:flex items-center gap-2">
-            {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-white dark:hover:text-white light:hover:text-slate-900 hover:bg-slate-800/70 dark:hover:bg-slate-800/70 light:hover:bg-slate-200/70 transition-colors"
-              aria-label="Toggle light/dark theme"
+              className="p-2 rounded-lg transition-colors hover:bg-slate-800/40"
+              style={iconBtnStyle}
+              aria-label="Toggle theme"
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {theme === 'dark' ? (
-                <FiSun className="w-4 h-4 text-amber-400" />
-              ) : (
-                <FiMoon className="w-4 h-4 text-indigo-600" />
-              )}
+              {theme === 'dark'
+                ? <FiSun className="w-4 h-4 text-amber-400" />
+                : <FiMoon className="w-4 h-4 text-indigo-600" />}
             </button>
-
             <a
               href={PERSONAL_INFO.github}
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="p-2 rounded-lg text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-white dark:hover:text-white light:hover:text-slate-900 hover:bg-slate-800/70 dark:hover:bg-slate-800/70 light:hover:bg-slate-200/70 transition-colors"
+              className="p-2 rounded-lg transition-colors hover:bg-slate-800/40"
+              style={iconBtnStyle}
             >
               <FiGithub className="w-4 h-4" />
             </a>
             <a
               href={PERSONAL_INFO.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="p-2 rounded-lg text-slate-400 dark:text-slate-400 light:text-slate-600 hover:text-white dark:hover:text-white light:hover:text-slate-900 hover:bg-slate-800/70 dark:hover:bg-slate-800/70 light:hover:bg-slate-200/70 transition-colors"
+              className="p-2 rounded-lg transition-colors hover:bg-slate-800/40"
+              style={iconBtnStyle}
             >
               <FiLinkedin className="w-4 h-4" />
             </a>
@@ -153,14 +153,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             </button>
           </div>
 
-          {/* Mobile Menu Button + Theme Toggle */}
+          {/* Mobile Controls */}
           <div className="flex items-center gap-1.5 lg:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              className="p-2 rounded-lg transition-colors"
+              style={iconBtnStyle}
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <FiSun className="w-4 h-4 text-amber-400" /> : <FiMoon className="w-4 h-4 text-indigo-600" />}
+              {theme === 'dark'
+                ? <FiSun className="w-4 h-4 text-amber-400" />
+                : <FiMoon className="w-4 h-4 text-indigo-600" />}
             </button>
             <button
               onClick={onOpenResume}
@@ -170,7 +173,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800"
+              className="p-2 rounded-lg transition-colors"
+              style={iconBtnStyle}
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
@@ -178,9 +182,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 pt-2 pb-4 border-t border-slate-800 bg-[#111827]/95 dark:bg-[#111827]/95 light:bg-white/95 backdrop-blur-md rounded-xl px-4 shadow-xl">
+          <div
+            className="lg:hidden mt-3 pt-2 pb-4 border-t backdrop-blur-md rounded-xl px-4 shadow-xl"
+            style={mobileDrawerStyle}
+          >
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
@@ -190,27 +197,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
                   className={`px-3 py-2 rounded-lg text-sm transition-colors ${
                     activeSection === link.id
                       ? 'bg-indigo-600 text-white font-medium'
-                      : 'text-slate-300 dark:text-slate-300 light:text-slate-700 hover:bg-slate-800/60 dark:hover:bg-slate-800/60 light:hover:bg-slate-100'
+                      : 'hover:bg-slate-800/30'
                   }`}
+                  style={activeSection === link.id ? undefined : { color: 'var(--text-body)' }}
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="pt-3 mt-2 border-t border-slate-800 dark:border-slate-800 light:border-slate-200 flex items-center justify-around">
-                <a
-                  href={PERSONAL_INFO.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white py-1"
-                >
+              <div className="pt-3 mt-2 border-t flex items-center justify-around" style={{ borderColor: 'var(--border-base)' }}>
+                <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs py-1" style={{ color: 'var(--text-body)' }}>
                   <FiGithub className="w-4 h-4" /> GitHub
                 </a>
-                <a
-                  href={PERSONAL_INFO.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white py-1"
-                >
+                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs py-1" style={{ color: 'var(--text-body)' }}>
                   <FiLinkedin className="w-4 h-4" /> LinkedIn
                 </a>
               </div>
