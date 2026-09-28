@@ -92,17 +92,17 @@ export const PERSONAL_INFO = {
 
 export const PROJECTS_DATA: Project[] = [
   {
-    id: "ai-meeting-followup-agent",
-    title: "AI Meeting Follow-up Agent",
-    subtitle: "Multimodal Video Intelligence & Automated Executive Reporting",
+    id: "meeting-followup-agent",
+    title: "Meeting Follow-up Automation Agent",
+    subtitle: "Multimodal Video Processing & Automated Executive Reporting",
     category: "GenAI",
     tags: ["Google Gemini Multimodal", "FastAPI", "Python", "React", "FFmpeg", "Tailwind CSS"],
-    description: "An automated intelligence system that analyzes client and team meeting video recordings directly using Gemini multimodal AI to extract executive summaries, decisions, action items, and draft follow-up emails.",
+    description: "An automated pipeline that processes client and team meeting video recordings directly with multimodal Gemini AI to extract structured summaries, key decisions, assigned action items, and draft follow-up emails.",
     githubUrl: "https://github.com/punamchanne/AI-Meeting-Follow-up-Agent",
     featured: true,
-    overview: "In modern corporate settings, converting recorded client/team video calls into concrete action items, executive summaries, and follow-up emails requires hours of manual work. This agent analyzes raw video files directly without requiring separate, lossy transcription pipelines.",
-    problem: "Manual post-meeting documentation is slow, prone to missing key action items, and creates delays in communicating next steps to clients and team stakeholders.",
-    solution: "Built a full-stack AI automation system using Google Gemini's multimodal video understanding. It extracts timestamps, action owners, decisions, and creates structured executive drafts ready for one-click dispatch.",
+    overview: "In corporate workflows, converting recorded video calls into concrete action items, summaries, and follow-up emails requires hours of manual work. This agent analyzes raw video files directly without requiring separate, lossy transcription pipelines.",
+    problem: "Manual meeting documentation is slow, prone to missing action items, and creates delays in communicating next steps to clients and team stakeholders.",
+    solution: "Built a full-stack system using Google Gemini's multimodal video understanding to extract timestamps, action owners, decisions, and generate structured executive drafts for one-click dispatch.",
     keyFeatures: [
       "Direct multimodal video ingestion (.mp4, .mov, .webm) with FFmpeg preprocessing",
       "Automated extraction of meeting objectives, core decisions, and owner-assigned action items",
@@ -113,7 +113,7 @@ export const PROJECTS_DATA: Project[] = [
     techStack: {
       frontend: ["React.js", "Tailwind CSS", "Vite", "Lucide Icons"],
       backend: ["Python 3.11", "FastAPI", "Uvicorn", "Pydantic"],
-      ai_ml: ["Google Gemini Multimodal API (gemini-1.5-flash / 2.0)", "Prompt Engineering"],
+      ai_ml: ["Google Gemini Multimodal API", "Prompt Engineering"],
       tools: ["FFmpeg", "Git", "REST APIs"]
     },
     architecture: `[Video Upload: .mp4/.webm]
@@ -137,8 +137,8 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "pharmaceutical-complaint-management",
-    title: "AI-Powered Pharmaceutical Complaint Management",
-    subtitle: "Enterprise QMS Intake & Regulatory Risk Triage Engine",
+    title: "Pharmaceutical Customer Complaint Management",
+    subtitle: "Enterprise QMS Intake & Regulatory Risk Triage System",
     category: "AI/ML",
     tags: ["LangGraph", "FastAPI", "React", "Redux", "LLM", "cGMP / FDA 21 CFR", "Python"],
     description: "Enterprise Quality Management System (QMS) intake engine for Active Pharmaceutical Ingredients (API) & Finished Dosage Form compliance under FDA 21 CFR Part 211, leveraging LangGraph stateful multi-agent workflows.",
@@ -157,7 +157,7 @@ export const PROJECTS_DATA: Project[] = [
     techStack: {
       frontend: ["React.js", "Redux Toolkit", "Tailwind CSS", "Axios"],
       backend: ["FastAPI", "Python", "Pydantic", "Uvicorn"],
-      ai_ml: ["LangGraph", "LangChain", "LLM APIs (OpenAI/Anthropic compatible)"],
+      ai_ml: ["LangGraph", "LangChain", "LLM APIs"],
       tools: ["Git", "RESTful Architecture", "CORS Middleware"]
     },
     architecture: `[Customer Complaint Submission]
@@ -179,15 +179,15 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
-    id: "farmcare-ai",
-    title: "FarmCare AI – Smart Agriculture Platform",
-    subtitle: "Intelligent Crop Recommendation & Plant Disease Diagnosis",
+    id: "farmcare",
+    title: "FarmCare – Smart Agriculture System",
+    subtitle: "Soil-Based Crop Recommendation & Plant Disease Diagnosis",
     category: "AI/ML",
     tags: ["Python", "Scikit-learn", "TensorFlow", "React", "TypeScript", "PostgreSQL", "Supabase"],
-    description: "An AI-powered smart agriculture platform that provides intelligent crop recommendations based on soil parameters and climate conditions, combined with computer vision plant disease detection.",
+    description: "An agricultural decision support platform providing soil-based crop recommendations and deep learning computer vision plant leaf disease diagnosis for farming stakeholders.",
     githubUrl: "https://github.com/punamchanne/FarmCareAi",
     featured: true,
-    overview: "FarmCare AI empowers farmers and agricultural consultants with data-driven decision support. The platform pairs machine learning classification for optimal crop selection with deep learning for plant leaf disease diagnosis.",
+    overview: "FarmCare empowers agricultural consultants with data-driven decision support. The platform pairs machine learning classification for optimal crop selection with deep learning for plant leaf disease diagnosis.",
     problem: "Farmers frequently face crop failures due to improper crop selection for their specific soil chemistry (N-P-K, pH) or late identification of contagious foliar plant diseases.",
     solution: "Built a full-stack platform pairing Scikit-learn multi-class crop recommendation models and a TensorFlow CNN classifier with a modern React + TypeScript dashboard backed by PostgreSQL/Supabase.",
     keyFeatures: [
@@ -220,17 +220,17 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "property-dealing",
-    title: "AI Homes – Real Estate & Property Dealing",
-    subtitle: "Full-Stack Real Estate Hub with Virtual Tours & Scheduling",
+    title: "Property Dealing & Real Estate Portal",
+    subtitle: "Full-Stack Property Management with Virtual Tours & Scheduling",
     category: "Full Stack",
     tags: ["React", "Next.js", "Node.js", "Express", "MongoDB", "JWT Auth", "Cloudinary"],
-    description: "A production-grade, full-stack real estate platform featuring comprehensive property CRUD, virtual property browsing, agent meeting scheduling, image upload pipelines, and bookmarking.",
+    description: "A full-stack real estate platform featuring comprehensive property listings, virtual browsing, agent appointment scheduling, image upload pipelines, and bookmarking.",
     githubUrl: "https://github.com/punamchanne/Property_Dealing",
     liveUrl: "https://propertydealingv2.vercel.app",
     featured: true,
-    overview: "AI Homes is a deployed full-stack property marketplace connecting property buyers, renters, and agents with a seamless browsing and scheduling workflow.",
+    overview: "A deployed full-stack property marketplace connecting property buyers, renters, and agents with a seamless browsing and scheduling workflow.",
     problem: "Traditional real estate portals suffer from clunky navigation, disjointed meeting scheduling, and slow asset delivery for property galleries.",
-    solution: "Engineered a modern web platform using React/Next.js, Node.js, Express, and MongoDB Atlas with JWT session security, Cloudinary multi-image uploads, and client-agent appointment scheduling.",
+    solution: "Engineered a web platform using React/Next.js, Node.js, Express, and MongoDB Atlas with JWT session security, Cloudinary multi-image uploads, and client-agent appointment scheduling.",
     keyFeatures: [
       "Complete property management: Create, Read, Update, Delete with rich image galleries",
       "Multi-faceted search & filtering by price, location, property type, and amenities",
@@ -256,14 +256,14 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "job-portal",
-    title: "Job Portal Platform",
-    subtitle: "Full-Stack Recruitment Hub with Dual-Role Auth & Resume Parsing",
+    title: "Job Portal Web Application",
+    subtitle: "Recruitment Portal with Candidate & Employer Auth & Resume Parsing",
     category: "Full Stack",
     tags: ["React", "Next.js", "Node.js", "Express", "MongoDB", "JWT Auth", "REST API"],
-    description: "A comprehensive recruitment platform featuring candidate job search, employer vacancy posting, OTP verification, applicant tracking workflows, and resume document parsing.",
+    description: "A recruitment platform featuring candidate job search, employer vacancy posting, OTP verification, applicant tracking workflows, and resume document parsing.",
     githubUrl: "https://github.com/punamchanne/job-portal-",
     featured: true,
-    overview: "A modern recruitment marketplace connecting active job seekers with hiring companies, equipped with role-based dashboards, verified credentials, and candidate application pipelines.",
+    overview: "A recruitment marketplace connecting active job seekers with hiring companies, equipped with role-based dashboards, verified credentials, and candidate application pipelines.",
     problem: "Recruitment websites often suffer from fragmented workflows between job applicants and hiring managers, lacking unified document parsing and application tracking.",
     solution: "Developed an end-to-end full-stack portal with React/Next.js and Node.js/Express featuring dual-role authentication (Candidates & Employers), OTP verification, application status tracking, and resume document ingestion.",
     keyFeatures: [
@@ -335,16 +335,16 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "bank-management-system",
-    title: "NeoFin Core Banking Management System",
-    subtitle: "Enterprise Banking Operations & Customer Information File Engine",
+    title: "Bank Management System",
+    subtitle: "Core Banking Portal with Customer Information File & Ledger",
     category: "Full Stack",
     tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST API"],
-    description: "A comprehensive full-stack core banking application featuring Customer Information File (CIF) management, multi-tier account handling, transactional ledger with transfer validation, and loan processing.",
+    description: "A full-stack banking application featuring Customer Information File (CIF) management, multi-tier account handling, transactional ledger with transfer validation, and loan processing.",
     githubUrl: "https://github.com/punamchanne/bank-management-system",
     featured: false,
-    overview: "NeoFin is a full-stack banking operational platform engineered to simulate enterprise core banking workflows with high transaction integrity.",
+    overview: "A full-stack banking operational platform engineered to simulate enterprise core banking workflows with high transaction integrity.",
     problem: "Banking administrative software is often bloated, poorly structured, and lacks unified CIF-to-account relational mapping.",
-    solution: "Developed an intuitive neo-fintech banking portal with React, Node.js, Express, and MongoDB featuring automated CIF IDs, multi-account ledgering, and loan application modules.",
+    solution: "Developed an intuitive banking portal with React, Node.js, Express, and MongoDB featuring automated CIF IDs, multi-account ledgering, and loan application modules.",
     keyFeatures: [
       "CIF (Customer Information File) auto-generation with KYC identity verification tracking",
       "Multi-account management (Savings, Current, Fixed Deposit) mapped to unique CIFs",
@@ -375,84 +375,9 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
-    id: "emotion-detection",
-    title: "Facial Emotion Detection & Recommender",
-    subtitle: "Real-Time Computer Vision Sentiment Analysis & Personalization",
-    category: "AI/ML",
-    tags: ["Python 3.11", "Flask", "React", "OpenCV", "DeepFace / CNN", "MongoDB"],
-    description: "An intelligent computer vision platform that captures facial expressions via webcam, determines emotional states in real-time, and recommends personalized actions matching the user's mood.",
-    githubUrl: "https://github.com/punamchanne/Emotion_Detection_based_on_facialexpression",
-    featured: false,
-    overview: "Combining computer vision with human-computer interaction, this application captures user facial expressions through the browser webcam and detects real-time emotional state to deliver personalized recommendations.",
-    problem: "Most recommendation engines rely solely on historical clickstream data, missing real-time physical/emotional context like fatigue or stress.",
-    solution: "Constructed a real-time web application coupling a React camera capture interface with a Python/Flask computer vision pipeline utilizing OpenCV and deep learning facial emotion recognition.",
-    keyFeatures: [
-      "Webcam stream capture with instant image frame transmission",
-      "Multi-class emotion classification (Happy, Neutral, Stressed, Tired, Energetic)",
-      "Personalized recommendation engine matching current mood state",
-      "User profile registration and historical emotion trend logging with MongoDB Atlas",
-      "Smooth dark-themed UI with instant visual feedback"
-    ],
-    techStack: {
-      frontend: ["React 18", "HTML5 Canvas / WebRTC", "CSS3 / Tailwind"],
-      backend: ["Python 3.11", "Flask", "Flask-CORS"],
-      ai_ml: ["OpenCV", "DeepFace / CNN Model", "NumPy"],
-      database: ["MongoDB Atlas"],
-      tools: ["Git", "REST APIs"]
-    },
-    architecture: `[Browser WebRTC Camera Stream] ──► [React Capture Frame]
-                                             │ (Base64 / Multipart)
-                                             ▼
-                             [Flask Python Vision Gateway]
-                                             │
-                                   [OpenCV Face Crop]
-                                             │
-                                  [DeepFace / CNN Model]
-                                             │
-                        ┌────────────────────┴────────────────────┐
-                        ▼                                         ▼
-            [Emotion Vector Scores]                      [MongoDB Trend Log]
-                        │
-                        ▼
-           [Personalized Recommendation Return]`,
-    challenges: [
-      "Achieving low latency inference across varying camera resolutions and lighting conditions",
-      "Properly handling base64 image decoding and memory cleanup on the Flask server"
-    ]
-  },
-  {
-    id: "educloud-platform",
-    title: "EduCloud – Academic Management Platform",
-    subtitle: "Cloud-Based Courseware Delivery & Student Performance Analytics",
-    category: "Full Stack",
-    tags: ["React.js", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST API"],
-    description: "A cloud-driven educational platform designed for academic institutions, supporting interactive course enrollment, assignment submissions, grading pipelines, and student performance tracking.",
-    githubUrl: "https://github.com/punamchanne/EduCloud",
-    featured: false,
-    overview: "EduCloud is a full-stack educational portal streamlining academic operations, course distribution, and student progress monitoring.",
-    problem: "Academic management systems often suffer from fragmented communication between instructors and students, lacking centralized lesson and grading tracking.",
-    solution: "Built a responsive platform with React, Node.js, and MongoDB providing multi-module courseware, student assignment submissions, and instructor grading tools.",
-    keyFeatures: [
-      "Student and instructor role management with protected portal routes",
-      "Course catalog with multi-module lesson organization and syllabus viewing",
-      "Assignment submission pipeline with deadline validation and gradebook records",
-      "Student performance analytics dashboard and progress tracking"
-    ],
-    techStack: {
-      frontend: ["React.js", "Tailwind CSS", "Lucide React"],
-      backend: ["Node.js", "Express.js", "JWT Auth"],
-      database: ["MongoDB", "Mongoose"],
-      tools: ["Git", "Postman", "REST APIs"]
-    },
-    architecture: `[Student / Faculty Portal] ──► [Express REST APIs] ──► [MongoDB Database]`,
-    challenges: [
-      "Structuring relational course enrollment and submission models within MongoDB"
-    ]
-  },
-  {
     id: "malware-classification",
-    title: "Malware Classification & Threat Classifier",
-    subtitle: "Static PE Header Feature Extraction & Machine Learning Detection",
+    title: "Malware Classification & Detection",
+    subtitle: "Static PE Header Feature Extraction & Machine Learning Classifier",
     category: "AI/ML",
     tags: ["Python", "Scikit-learn", "PEfile", "Random Forest", "Pandas", "Cybersecurity"],
     githubUrl: "https://github.com/punamchanne/Malware-Classification",

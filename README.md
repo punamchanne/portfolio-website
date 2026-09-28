@@ -72,21 +72,29 @@ portfolio/
 
 ## 🚀 Featured Engineering Projects
 
-1. **[AI Meeting Follow-up Agent](https://github.com/punamchanne/AI-Meeting-Follow-up-Agent)**
+1. **[Meeting Follow-up Automation Agent](https://github.com/punamchanne/AI-Meeting-Follow-up-Agent)**
    - *Stack:* Google Gemini Multimodal API, FastAPI, Python 3.11, React, FFmpeg
-   - Direct video ingestion engine extracting executive summaries, action owners, and ready-to-send draft emails.
+   - Automated multimodal video analysis pipeline extracting executive summaries, decisions, action items, and follow-up emails.
 
-2. **[AI-Powered Pharmaceutical Complaint Management](https://github.com/punamchanne/AI-Powered-Pharmaceutical-Customer-Complaint-Management-)**
+2. **[Pharmaceutical Customer Complaint Management](https://github.com/punamchanne/AI-Powered-Pharmaceutical-Customer-Complaint-Management-)**
    - *Stack:* LangGraph, FastAPI, Python, React, Redux, cGMP / FDA 21 CFR
-   - Enterprise QMS regulatory triage engine classifying complaints into Critical/Major/Minor tiers with audit trails.
+   - Enterprise QMS regulatory triage system classifying complaints into Critical/Major/Minor tiers with audit trails.
 
-3. **[NeoFin Core Banking Management System](https://github.com/punamchanne/bank-management-system)**
-   - *Stack:* React, Node.js, Express, MongoDB, Tailwind CSS, REST APIs
-   - Core operational banking portal with CIF auto-generation, transactional ledgering, and loan application lifecycle.
+3. **[FarmCare – Smart Agriculture System](https://github.com/punamchanne/FarmCareAi)**
+   - *Stack:* Python, Scikit-learn, TensorFlow CNN, React, TypeScript, PostgreSQL, Supabase
+   - Agricultural decision support platform combining soil-based crop recommendation and plant leaf disease diagnosis.
 
-4. **[Facial Emotion Detection & Recommender](https://github.com/punamchanne/Emotion_Detection_based_on_facialexpression)**
-   - *Stack:* Python, Flask, OpenCV, DeepFace CNN, React, WebRTC
-   - Real-time computer vision sentiment pipeline mapping live facial expressions to personalized actions.
+4. **[Property Dealing & Real Estate Portal](https://github.com/punamchanne/Property_Dealing)**
+   - *Stack:* React, Next.js, Node.js, Express, MongoDB, JWT Auth, Cloudinary
+   - Full-stack property management portal with image upload pipelines and agent appointment scheduling.
+
+5. **[Job Portal Web Application](https://github.com/punamchanne/job-portal-)**
+   - *Stack:* React, Next.js, Node.js, Express, MongoDB, JWT Auth, REST APIs
+   - Recruitment portal with candidate and employer authentication, vacancy postings, and resume parsing.
+
+6. **[Blockchain Forensic Evidence Management](https://github.com/punamchanne/Blockchain-Forensic-Evidence-Management)**
+   - *Stack:* Python, Flask, Cryptography / SHA-256, React, PostgreSQL
+   - Cryptographic digital evidence management system ensuring immutable chain-of-custody logging.
 
 ---
 
