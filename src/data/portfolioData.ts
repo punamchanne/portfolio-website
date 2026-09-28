@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'AI/ML' | 'GenAI' | 'Full Stack' | 'Data';
+  category: 'AI/ML' | 'GenAI' | 'Full Stack' | 'Data' | 'Blockchain';
   tags: string[];
   description: string;
   githubUrl: string;
@@ -255,6 +255,85 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
+    id: "job-portal",
+    title: "Job Portal Platform",
+    subtitle: "Full-Stack Recruitment Hub with Dual-Role Auth & Resume Parsing",
+    category: "Full Stack",
+    tags: ["React", "Next.js", "Node.js", "Express", "MongoDB", "JWT Auth", "REST API"],
+    description: "A comprehensive recruitment platform featuring candidate job search, employer vacancy posting, OTP verification, applicant tracking workflows, and resume document parsing.",
+    githubUrl: "https://github.com/punamchanne/job-portal-",
+    featured: true,
+    overview: "A modern recruitment marketplace connecting active job seekers with hiring companies, equipped with role-based dashboards, verified credentials, and candidate application pipelines.",
+    problem: "Recruitment websites often suffer from fragmented workflows between job applicants and hiring managers, lacking unified document parsing and application tracking.",
+    solution: "Developed an end-to-end full-stack portal with React/Next.js and Node.js/Express featuring dual-role authentication (Candidates & Employers), OTP verification, application status tracking, and resume document ingestion.",
+    keyFeatures: [
+      "Dual candidate & employer authentication with secure OTP verification",
+      "Employer job posting dashboard with salary range, skills, and application tracking",
+      "Candidate profile creation, job search, bookmarked vacancies, and one-click application",
+      "Resume document upload and structured parsing pipeline",
+      "Real-time search and multi-criteria job filtering by location, role, and industry"
+    ],
+    techStack: {
+      frontend: ["React.js", "Next.js", "Tailwind CSS", "Lucide React"],
+      backend: ["Node.js", "Express.js", "JWT Auth", "Multer"],
+      database: ["MongoDB", "Mongoose"],
+      tools: ["Git", "Postman", "REST APIs"]
+    },
+    architecture: `[Candidate / Employer Web Client]
+                 │
+                 ▼
+    [Express.js REST API & Auth]
+                 │
+      ┌──────────┴──────────┐
+      ▼                     ▼
+[Job Posting Engine]   [Resume Parser]
+      └──────────┬──────────┘
+                 ▼
+        [MongoDB Database]`,
+    challenges: [
+      "Structuring multi-role authorization flows for candidates versus verified employers",
+      "Handling document uploads reliably across varied resume formats"
+    ]
+  },
+  {
+    id: "blockchain-forensic",
+    title: "Blockchain Forensic Evidence Management",
+    subtitle: "Tamper-Proof Chain of Custody & Secure Digital Evidence Ledger",
+    category: "Blockchain",
+    tags: ["Python", "Flask", "Blockchain Cryptography", "SHA-256", "React", "PostgreSQL"],
+    description: "Digital forensic evidence management system providing tamper-proof chain-of-custody logging with SHA-256 cryptographic hashing, role-based examiner access, and evidence audit trails.",
+    githubUrl: "https://github.com/punamchanne/Blockchain-Forensic-Evidence-Management",
+    featured: true,
+    overview: "Digital forensic evidence must maintain unbroken, provable chain-of-custody to remain admissible in legal proceedings. This platform leverages blockchain cryptographic principles to make digital evidence tampering impossible.",
+    problem: "Traditional evidence logs are stored in centralized databases susceptible to unauthorized alterations, backdating, and unverified custody transfers.",
+    solution: "Designed a cryptographic evidence ledger utilizing SHA-256 block hashing and timestamping with Python and Flask, ensuring that every evidence handover and status update is immutably recorded.",
+    keyFeatures: [
+      "Cryptographic SHA-256 chain-of-custody block hashing for forensic evidence items",
+      "Immutable evidence intake, analysis transfer, and examiner sign-off audit logs",
+      "Tamper-detection engine verifying integrity against original cryptographic hashes",
+      "Role-based access control for Law Enforcement Officers, Investigators, and Judges",
+      "Interactive evidence tracking interface with exportable verification certificates"
+    ],
+    techStack: {
+      frontend: ["React.js", "Tailwind CSS", "Lucide Icons"],
+      backend: ["Python 3.11", "Flask", "Cryptography Libraries"],
+      database: ["PostgreSQL / SQLite"],
+      tools: ["Git", "REST APIs", "SHA-256"]
+    },
+    architecture: `[Evidence Ingestion & Metadata] ──► [SHA-256 Cryptographic Hash]
+                                                │
+                                                ▼
+                                    [Blockchain Ledger Block]
+                                                │
+                                    [Immutable Audit Trail]
+                                                │
+                                    [Examiner Verification UI]`,
+    challenges: [
+      "Ensuring high transaction throughput while maintaining strict cryptographic verification checks",
+      "Designing an intuitive custody transfer workflow for non-technical field officers"
+    ]
+  },
+  {
     id: "bank-management-system",
     title: "NeoFin Core Banking Management System",
     subtitle: "Enterprise Banking Operations & Customer Information File Engine",
@@ -262,7 +341,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST API"],
     description: "A comprehensive full-stack core banking application featuring Customer Information File (CIF) management, multi-tier account handling, transactional ledger with transfer validation, and loan processing.",
     githubUrl: "https://github.com/punamchanne/bank-management-system",
-    featured: true,
+    featured: false,
     overview: "NeoFin is a full-stack banking operational platform engineered to simulate enterprise core banking workflows with high transaction integrity.",
     problem: "Banking administrative software is often bloated, poorly structured, and lacks unified CIF-to-account relational mapping.",
     solution: "Developed an intuitive neo-fintech banking portal with React, Node.js, Express, and MongoDB featuring automated CIF IDs, multi-account ledgering, and loan application modules.",
@@ -303,7 +382,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ["Python 3.11", "Flask", "React", "OpenCV", "DeepFace / CNN", "MongoDB"],
     description: "An intelligent computer vision platform that captures facial expressions via webcam, determines emotional states in real-time, and recommends personalized actions matching the user's mood.",
     githubUrl: "https://github.com/punamchanne/Emotion_Detection_based_on_facialexpression",
-    featured: true,
+    featured: false,
     overview: "Combining computer vision with human-computer interaction, this application captures user facial expressions through the browser webcam and detects real-time emotional state to deliver personalized recommendations.",
     problem: "Most recommendation engines rely solely on historical clickstream data, missing real-time physical/emotional context like fatigue or stress.",
     solution: "Constructed a real-time web application coupling a React camera capture interface with a Python/Flask computer vision pipeline utilizing OpenCV and deep learning facial emotion recognition.",
@@ -339,6 +418,94 @@ export const PROJECTS_DATA: Project[] = [
     challenges: [
       "Achieving low latency inference across varying camera resolutions and lighting conditions",
       "Properly handling base64 image decoding and memory cleanup on the Flask server"
+    ]
+  },
+  {
+    id: "educloud-platform",
+    title: "EduCloud – Academic Management Platform",
+    subtitle: "Cloud-Based Courseware Delivery & Student Performance Analytics",
+    category: "Full Stack",
+    tags: ["React.js", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST API"],
+    description: "A cloud-driven educational platform designed for academic institutions, supporting interactive course enrollment, assignment submissions, grading pipelines, and student performance tracking.",
+    githubUrl: "https://github.com/punamchanne/EduCloud",
+    featured: false,
+    overview: "EduCloud is a full-stack educational portal streamlining academic operations, course distribution, and student progress monitoring.",
+    problem: "Academic management systems often suffer from fragmented communication between instructors and students, lacking centralized lesson and grading tracking.",
+    solution: "Built a responsive platform with React, Node.js, and MongoDB providing multi-module courseware, student assignment submissions, and instructor grading tools.",
+    keyFeatures: [
+      "Student and instructor role management with protected portal routes",
+      "Course catalog with multi-module lesson organization and syllabus viewing",
+      "Assignment submission pipeline with deadline validation and gradebook records",
+      "Student performance analytics dashboard and progress tracking"
+    ],
+    techStack: {
+      frontend: ["React.js", "Tailwind CSS", "Lucide React"],
+      backend: ["Node.js", "Express.js", "JWT Auth"],
+      database: ["MongoDB", "Mongoose"],
+      tools: ["Git", "Postman", "REST APIs"]
+    },
+    architecture: `[Student / Faculty Portal] ──► [Express REST APIs] ──► [MongoDB Database]`,
+    challenges: [
+      "Structuring relational course enrollment and submission models within MongoDB"
+    ]
+  },
+  {
+    id: "malware-classification",
+    title: "Malware Classification & Threat Classifier",
+    subtitle: "Static PE Header Feature Extraction & Machine Learning Detection",
+    category: "AI/ML",
+    tags: ["Python", "Scikit-learn", "PEfile", "Random Forest", "Pandas", "Cybersecurity"],
+    githubUrl: "https://github.com/punamchanne/Malware-Classification",
+    featured: false,
+    description: "An automated cybersecurity machine learning system that extracts Portable Executable (PE) binary header attributes and entropy signatures to classify files into benign versus malware families.",
+    overview: "A machine learning pipeline that analyzes binary file structures statically without executing dangerous payloads, categorizing potential threats into families.",
+    problem: "Dynamic malware analysis is slow and requires sandboxed environments. Fast static triage is critical for enterprise threat response.",
+    solution: "Extracted structural PE header features with Python pefile, trained Random Forest and Gradient Boosting classifiers, and achieved high multi-class threat detection accuracy.",
+    keyFeatures: [
+      "Static binary feature extraction (Sections, API Imports, Header Characteristics, Entropy)",
+      "Multi-class malware classification across Trojan, Ransomware, Worm, and Benign classes",
+      "Comprehensive model evaluation with confusion matrices and ROC curves",
+      "Rapid static inference pipeline suitable for security operations triage"
+    ],
+    techStack: {
+      frontend: ["Python CLI / Streamlit"],
+      backend: ["Python 3.11", "PEfile"],
+      ai_ml: ["Scikit-learn (RandomForest/XGBoost)", "Pandas", "NumPy"],
+      tools: ["Git", "Jupyter Notebook"]
+    },
+    architecture: `[Binary File .exe/.dll] ──► [PEfile Feature Extractor] ──► [ML Classification Model] ──► [Threat Report]`,
+    challenges: [
+      "Handling imbalanced malware family distributions in training datasets",
+      "Engineering robust feature representations resistant to basic header obfuscation"
+    ]
+  },
+  {
+    id: "plant-leaf-disease",
+    title: "Plant Leaf Disease Prediction",
+    subtitle: "Deep Learning Computer Vision Diagnosis for Foliar Pathogens",
+    category: "AI/ML",
+    tags: ["Python", "TensorFlow", "Keras CNN", "OpenCV", "Flask", "React"],
+    githubUrl: "https://github.com/punamchanne/Plant-Leaf-Disease-Prediction",
+    featured: false,
+    description: "A deep learning computer vision model trained on plant pathology imagery to detect and classify foliar bacterial, fungal, and viral infections across multiple crop types.",
+    overview: "Computer vision diagnosis platform enabling instant plant leaf health screening through deep Convolutional Neural Networks.",
+    problem: "Delayed diagnosis of contagious plant diseases causes extensive crop yield losses before symptoms are recognized manually.",
+    solution: "Engineered a TensorFlow/Keras CNN classifier trained on thousands of leaf pathology images with image augmentation, paired with an inference web API.",
+    keyFeatures: [
+      "Convolutional Neural Network (CNN) architecture optimized for foliar pathogen features",
+      "Multi-crop disease classification (Tomato, Potato, Corn, Apple diseases)",
+      "Instant confidence scoring and diagnosis report generation",
+      "Responsive web interface for photo upload and diagnostic feedback"
+    ],
+    techStack: {
+      frontend: ["React.js", "Tailwind CSS"],
+      backend: ["Python", "Flask", "OpenCV"],
+      ai_ml: ["TensorFlow", "Keras CNN", "NumPy"],
+      tools: ["Git", "Jupyter Notebook"]
+    },
+    architecture: `[Leaf Photo Upload] ──► [OpenCV Preprocessing] ──► [TensorFlow CNN] ──► [Disease Classification & Remedy]`,
+    challenges: [
+      "Achieving robust accuracy under varied field lighting conditions and background clutter"
     ]
   }
 ];

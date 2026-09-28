@@ -2,18 +2,24 @@ import React, { useState } from 'react';
 import { PROJECTS_DATA } from '../data/portfolioData';
 import type { Project } from '../data/portfolioData';
 import { ProjectModal } from './ProjectModal';
-import { FiGithub, FiExternalLink, FiFileText } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiFileText, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Projects: React.FC = () => {
-  const [filter, setFilter] = useState<'All' | 'AI/ML' | 'GenAI' | 'Full Stack' | 'Data'>('All');
+  const [filter, setFilter] = useState<'All' | 'AI/ML' | 'GenAI' | 'Full Stack' | 'Blockchain'>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const categories = ['All', 'AI/ML', 'GenAI', 'Full Stack', 'Data'] as const;
+  const categories = ['All', 'AI/ML', 'GenAI', 'Full Stack', 'Blockchain'] as const;
 
+  // Filter projects by active category tab
   const filteredProjects = filter === 'All'
     ? PROJECTS_DATA
     : PROJECTS_DATA.filter(p => p.category === filter);
+
+  // Default to showing first 6 items unless expanded
+  const displayedProjects = isExpanded ? filteredProjects : filteredProjects.slice(0, 6);
+  const hasMoreProjects = filteredProjects.length > 6;
 
   return (
     <section id="projects" className="py-20 border-b border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 relative">
@@ -44,7 +50,10 @@ export const Projects: React.FC = () => {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setFilter(cat)}
+                onClick={() => {
+                  setFilter(cat);
+                  setIsExpanded(false); // Reset expansion on filter change
+                }}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
                   filter === cat
                     ? 'bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20'
@@ -57,7 +66,7 @@ export const Projects: React.FC = () => {
           </div>
 
           <div className="text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500">
-            Showing <span className="text-white dark:text-white light:text-slate-900 font-semibold">{filteredProjects.length}</span> of {PROJECTS_DATA.length} Projects
+            Showing <span className="text-white dark:text-white light:text-slate-900 font-semibold">{displayedProjects.length}</span> of {filteredProjects.length} Projects
           </div>
         </div>
 
@@ -67,14 +76,14 @@ export const Projects: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence>
-            {filteredProjects.map((project, idx) => (
+            {displayedProjects.map((project, idx) => (
               <motion.div
                 key={project.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                transition={{ duration: 0.4, delay: idx * 0.04 }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 className="glass-card rounded-xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer"
                 onClick={() => setSelectedProject(project)}
@@ -156,6 +165,30 @@ export const Projects: React.FC = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* Explore More Button & GitHub Direct Link */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-4">
+          {hasMoreProjects && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="px-6 py-2.5 rounded-xl bg-slate-900/90 dark:bg-slate-900/90 light:bg-white hover:bg-slate-800 dark:hover:bg-slate-800 light:hover:bg-slate-100 text-slate-200 dark:text-slate-200 light:text-slate-800 border border-slate-700/80 dark:border-slate-700/80 light:border-slate-300 font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5"
+            >
+              <span>{isExpanded ? 'Show less' : 'Explore more projects'}</span>
+              {isExpanded ? <FiChevronUp className="w-4 h-4" /> : <FiChevronDown className="w-4 h-4" />}
+            </button>
+          )}
+
+          {/* Direct GitHub Profile Link */}
+          <a
+            href="https://github.com/punamchanne"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 hover:text-indigo-400 dark:hover:text-indigo-400 light:hover:text-indigo-600 transition-colors pt-2"
+          >
+            <FiGithub className="w-3.5 h-3.5" />
+            <span>See all on GitHub (50+ repositories) →</span>
+          </a>
+        </div>
 
         {/* Project Deep-Dive Modal */}
         {selectedProject && (
