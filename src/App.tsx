@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -16,32 +17,37 @@ export function App() {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#080c14] text-slate-100 flex flex-col selection:bg-indigo-600 selection:text-white">
-      {/* Sticky Responsive Header */}
-      <Navbar onOpenResume={() => setResumeModalOpen(true)} />
+    <ThemeProvider>
+      <div className="min-h-screen bg-slate-950 dark:bg-slate-950 light:bg-slate-50 text-slate-100 dark:text-slate-100 light:text-slate-900 flex flex-col selection:bg-indigo-600 selection:text-white transition-colors duration-300 relative">
+        {/* Ambient background pattern */}
+        <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-0" />
 
-      {/* Main Content Sections */}
-      <main className="flex-grow">
-        <Hero onOpenResume={() => setResumeModalOpen(true)} />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Certifications />
-        <ResumeCTA onOpenResume={() => setResumeModalOpen(true)} />
-        <Contact />
-      </main>
+        {/* Sticky Responsive Header */}
+        <Navbar onOpenResume={() => setResumeModalOpen(true)} />
 
-      {/* Recruiter-ready Interactive Resume Modal */}
-      <ResumeModal
-        isOpen={resumeModalOpen}
-        onClose={() => setResumeModalOpen(false)}
-      />
+        {/* Main Content Sections */}
+        <main className="flex-grow relative z-10">
+          <Hero onOpenResume={() => setResumeModalOpen(true)} />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Education />
+          <Certifications />
+          <ResumeCTA onOpenResume={() => setResumeModalOpen(true)} />
+          <Contact />
+        </main>
 
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Recruiter-ready Interactive Resume Modal */}
+        <ResumeModal
+          isOpen={resumeModalOpen}
+          onClose={() => setResumeModalOpen(false)}
+        />
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 
